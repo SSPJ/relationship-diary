@@ -1,0 +1,46 @@
+### Images ###
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+browserconfig.xml
+site.webmanifest
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Deployment
+deploy.sh
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Translations
+*.mo
+*.pot
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+.env
+*.sqlite3
+/public/static/*
+/tmp/*

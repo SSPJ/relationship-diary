@@ -1,0 +1,92 @@
+{% extends "whenandwho/base.html" %}
+{% load static %}
+
+{% block header %}
+Categories:
+{% for cat in categories_list %}
+  <a href="{% url 'index' cat.name %}">{{ cat.name }}</a> 
+{% endfor %}
+<br />
+<form id="quick-add-form">{% csrf_token %}
+<label for="quick-add">
+Quick add:<sup>
+<a href="javascript:void(0)" onclick="document.getElementById('quick-add-help-text').style.display = 'block'; return false;">?</sup></a> 
+</label>
+<input type="text" id="quick-add" />
+ <a href="javascript:void(0)" id="quick-add-submit" onclick="return false;" title="Save Contact">💾</a>
+</form> 
+<div id="toast"></div>
+<div id="quick-add-help-text" style="display: none;">
+A semicolon-separated list of contact info, starting with the full name and pronouns, for example:<br/>
+<b>Mary "Nicky" Smith; she/her/hers; 274 W Element St; 764-245-9029; birthday July 17; contact weekly</b>
+</div>
+{% endblock %}
+
+{% block content %}
+  <h2>Contacts <a href="{% url 'create' %}" title="Create New Contact">➕</a></h2>
+  <table class="contactlist_table">
+    <tr class="tablerow">
+    <th>Full Name</th>
+    <th class="hideonsmall">Nickname</th>
+    <th class="hideontiny">Org:Title</th>
+    <th class="hideonsmall">Categories</th>
+    <th>Next Contact</th>
+    </tr>
+    {% for record in record_list %}
+      {% if record.is_overdue %}
+      <tr id="rec{{ record.pk }}" class="tablerow tablerow--warning">
+      {% elif record.is_birthday or record.is_anniversary %}
+      <tr id="rec{{ record.pk }}" class="tablerow tablerow--highlighted">
+      {% elif forloop.counter0|divisibleby:2 %}
+      <tr id="rec{{ record.pk }}" class="tablerow tablerow--light-grey">
+      {% else %}
+      <tr id="rec{{ record.pk }}" class="tablerow tablerow--dark-grey">
+      {% endif %}
+      <td class="hideextra tablecol contactlist_colA">
+        {% if record.is_birthday %}🎂 {% endif %}
+        {% if record.is_anniversary %}💍 {% endif %}
+        <a href="{% url 'detail' record.pk %}">
+        {{ record.fn }}
+        </a>
+        {% if "she" in record.x_pronouns %}♀
+        {% elif "they" in record.x_pronouns %}⚥
+        {% elif "he" in record.x_pronouns %}♂
+        {% else %}⚥
+        {% endif %}
+      </td>
+      <td class="hideextra hideonsmall tablecol contactlist_colB">
+        {% if record.nickname %}{{ record.nickname }}{% endif %}</td>
+      <td class="hideontiny tablecol contactlist_colC">
+        {% if record.org %}{{ record.org }}{% endif %}
+        {% if record.title %}: {{ record.title }}{% endif %}
+      </td>
+      <td class="tablecol hideonsmall contactlist_colD">
+        {% if record.categories %}{{ record.categories }}{% endif %}</td>
+      <td class="hideextra tablecol contactlist_colE">
+        {{ record.next_contact_date|date:"d M Y" }}</td>
+      <td class="tablecol contactlist_colF">
+        <a href="javascript:void(0)" onclick="water(event,'{{ record.pk }}');" title="Contacted today!">✔️</a>
+      </td>
+
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
+
+{% block footer %}
+<form id="import-contacts-form">{% csrf_token %}
+  <label for="import-contacts-file-selector" class="form__file-input-label">
+    Import vCard File</label>
+  <input id="import-contacts-file-selector" class="form__file-input"
+    type="file" name="cvf" accept="*cvf">
+</form> 
+<div id="import-output-div"></div>
+<a href="{% url 'download' %}">Export CSV File</a>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static "vcardparser.js" %}"></script>
+<script src="{% static "upload_vcard.js" %}"></script>
+<script src="{% static "quick_add.js" %}"></script>
+<script src="{% static "water_relationship.js" %}"></script>
+{% endblock %}

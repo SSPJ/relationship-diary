@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--Relationship Diary, Seamus Johnston https://seamusjohnston.com, 2018, GPLv3 -->
+{% load static %}
+<html lang="EN-en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static "style.css" %}">
+  <title>Relationship Diary</title>
+</head>
+
+<body>
+<div id="page">
+
+  <header>
+  {% block header %}
+    {% if http_referer_category %}
+    <a href="{% url 'index' http_referer_category %}">Return to Contacts List</a>
+    {% else %}
+    <a href="{% url 'index' %}">Return to Contacts List</a>
+    {% endif %}
+  {% endblock %}
+  </header>
+
+  <div id="page__middle">
+
+    <section id="sidebar">
+    </section>
+
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
+
+  </div>
+
+  <footer>
+  {% block footer %}
+  {% endblock %}
+  <p>
+  Made by <a href="https://seamusjohnston.com">Seamus Johnston</a>, released under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPLv3</a><br/>
+  Source code on <a href="TODO:link here">Github</a>, PRs welcome :)
+  </p>
+  </footer>
+
+{% block scripts %}
+{% endblock %}
+
+</div>
+
+</body>
+</html>

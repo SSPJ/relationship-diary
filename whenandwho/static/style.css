@@ -1,0 +1,182 @@
+/* Relationship Diary, Seamus Johnston, 2018, GPLv3 */
+body {
+  margin: 0;
+}
+
+#page {
+  width: 60%;
+  margin: auto;
+}
+
+header {
+  text-align: center;
+  padding: .2em;
+  background: #EEEEEE;
+}
+
+#page__middle { display: flex; }
+
+#sidebar {
+  width: 6%;
+  padding: .2em;
+  background: #CCCCCC;
+}
+
+main {
+  flex-grow: 1;
+  padding: 0em .2em 2em .2em;
+  background: #DDDDDD;
+}
+
+footer {
+  text-align: center;
+  padding: .2em;
+  background: #EEEEEE;
+}
+
+h2 { text-align: center; }
+
+#quick-add {
+  background-color: transparent;
+  border-style: solid;
+  border-width: 0px 0px 3px 0px;
+  border-color: black;
+  max-width: 40em;
+  width: 60%;
+}
+
+#quick-add:focus { border-color: #FDB431; }
+
+.import-output-div__table {
+  margin: auto;
+  padding: 3em;
+  border: 2px solid black;
+}
+
+#import-output-div td { text-align: left; }
+
+.align-center {
+  width: 100%;
+  text-align: center;
+}
+
+.form__file-input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.form__file-input-label {
+  color: #0000EE;
+  text-decoration: underline;
+  padding: .2em;
+}
+
+.form__file-input-label:hover { background: #FDB431; }
+
+.contactlist_table { width: 100%; }
+
+.textarea-note {
+  width: 35em;
+  height: 4em;
+}
+
+.hideextra {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.form__table {
+  border-collapse: collapse;
+  margin: auto;
+}
+
+.form__table tr:nth-child(even) { background: silver; }
+
+.form__table td {
+  padding-top: .2em;
+  padding-bottom: .2em;
+}
+
+.textarea--two-line {
+  height: 4em;
+  width: 24em;
+}
+
+.tableheader { text-align: center; }
+
+.tablerow--dark-grey { background: #CCCCCC; }
+
+.tablerow--light-grey { background: #EEEEEE; }
+
+.tablerow--highlighted { background: #B4FBFF; }
+
+.tablerow--warning { background: #FDB431; }
+
+.tablerow:hover { background: #FDB431; }
+
+.tablecol { padding: .2em .5em; }
+
+.contactlist_colA { max-width: 0; width: 30%; }
+.contactlist_colB { max-width: 0; }
+.contactlist_colC { max-width: 0; width: 30%; }
+.contactlist_colD { max-width: 0; }
+.contactlist_colE { max-width: 0; width: 12%; }
+.contactlist_colF { max-width: 0; width: 3%; }
+
+.large-text { font-size: 1.3em; }
+.underline { text-decoration: underline; }
+
+#notes-container {
+  width: 60%;
+  margin: auto;
+}
+
+#contactcard_right {
+  width: 35%;
+  float: right;
+}
+
+@media screen and (max-width: 1366px) {
+
+  #page { width: 90%; }
+
+}
+
+@media screen and (max-width: 1023px) {
+
+  #page { width: 100%; }
+  #sidebar { width: 2%; }
+
+}
+
+@media screen and (max-width: 1023px) {
+
+  #page { width: 100%; }
+  #sidebar { display: none; }
+
+}
+
+@media screen and (max-width: 760px) {
+
+  .hideonsmall { display: none; }
+
+}
+
+@media screen and (max-width: 500px) {
+
+  .textarea-note { width: 100%; }
+  .textarea--two-line { width: 98%; }
+  .form__table td, .form__table th { display: block; }
+
+}
+
+@media screen and (max-width: 420px) {
+
+  .hideontiny { display: none; }
+
+}

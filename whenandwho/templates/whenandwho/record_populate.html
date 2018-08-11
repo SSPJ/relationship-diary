@@ -1,0 +1,6 @@
+<form method="post" action="/api/v1/populate">{% csrf_token %}
+  <input type="submit" value="Save" />
+  <table class="form__table import-output-div__table">
+    {{ formset }}
+  </table>
+</form>

@@ -1,0 +1,99 @@
+{% extends "whenandwho/base.html" %}
+
+{% block content %}
+<h2>{{ record.fn }} 
+  {% if record.x_pronouns %}({{ record.x_pronouns }}){% endif %}
+  <a href="{% url 'edit' record.pk %}" title="Edit Contact">✏️</a></h2>
+<div class="align-center">
+{% if record.x_phonetic_first_name or record.x_phonetic_last_name %}
+  {{ record.x_phonetic_first_name }} {{ record.x_phonetic_last_name }}<br/>{% endif %}
+{% if record.nickname %}"{{ record.nickname }}"<br/>{% endif %}
+{% if record.org %}{{ record.org }}<br/>{% endif %}
+{% if record.role %}{{ record.role }}<br/>{% endif %}
+{% if record.title %}{{ record.title }}<br/>{% endif %}
+</div>
+
+<div id="contactcard_right">
+{% if record.why %}
+  <b>Why is this person in the address book?</b><br/>
+  {{ record.why }}<br/>{% endif %}
+</div>
+
+<div id="contactcard_left">
+{% if record.tel_cell %}
+  <span class="large-text underline">
+  <a href="tel:{{ record.tel_cell }}">{{ record.tel_cell }}</a></span><br/>
+  Mobile/Cell/Handy{% endif %}
+
+<p>
+  {% if record.tel_home %}
+    <b>Home Phone</b> <a href="tel:{{ record.tel_home }}">{{ record.tel_home }}</a><br/>{% endif %}
+  {% if record.email_personal %}
+    <b>Personal Email</b> <a href="mailto:{{ record.email_personal }}">{{ record.email_personal }}</a><br/>{% endif %}
+  {% if record.label_home %}
+    <b>Home Address</b> {{ record.label_home }}{% endif %}
+</p>
+
+<p>
+  {% if record.tel_work %}
+    <b>Work Phone</b> <a href="tel:{{ record.tel_work }}">{{ record.tel_work }}</a><br/>{% endif %}
+  {% if record.email_work %}
+    <b>Work Email</b> <a href="mailto:{{ record.email_work }}">{{ record.email_work }}</a><br/>{% endif %}
+  {% if record.label_work %}
+    <b>Work Address</b> {{ record.label_work }}{% endif %}
+</p>
+
+<p>
+{% if record.tel_other %}
+  <b>Telephone Other</b> <a href="tel:{{ record.tel_other }}">{{ record.tel_other }}</a><br/>{% endif %}
+{% if record.email_other %}
+  <b>Email Other</b> <a href="mailto:{{ record.email_other }}">{{ record.email_other }}</a><br/>{% endif %}
+{% if record.label_other %}
+  <b>Address Other</b> {{ record.label_other }}{% endif %}
+</p>
+
+<p>
+{% if record.url_1 %}
+  <a href="{{ record.url_1 }}">{{ record.url_1 }}</a><br/>{% endif %}
+{% if record.url_2 %}
+  <a href="{{ record.url_2 }}">{{ record.url_2 }}</a><br/>{% endif %}
+{% if record.url_3 %}
+  <a href="{{ record.url_3 }}">{{ record.url_3 }}</a><br/>{% endif %}
+{% if record.url_4 %}
+  <a href="{{ record.url_4 }}">{{ record.url_4 }}</a><br/>{% endif %}
+</p>
+
+{% if record.bday %}
+  <b>Birthday:</b> {% if record.is_birthday %}🎂 {% endif %}{{ record.bday }}<br/>{% endif %}
+{% if record.x_anniversary %}
+  <b>Anniversary:</b> {% if record.is_anniversary %}💍 {% endif %}{{ record.x_anniversary }}<br/>{% endif %}
+{% if record.geo %}
+  <b>Geolocation:</b> {{ record.geo }}<br/>{% endif %}
+{% if record.tz %}
+  <b>Timezone:</b> {{ record.tz }}<br/>{% endif %}
+{% if record.impp %}
+  <b>IMPP:</b> {{ record.impp }}<br/>{% endif %}
+{% if record.birthplace %}
+  <b>Birthplace:</b> {{ record.birthplace }}{% endif %}
+
+<p>---</p>
+
+{% if record.categories %}
+  <b>Categories:</b> {{ record.categories }}<br/>{% endif %}
+{% if record.created %}
+  <b>Created:</b> {{ record.created|date:"d F Y h:ia" }}<br/>{% endif %}
+{% if record.next_contact_date %}
+  <b>Next Contact Date:</b> {{ record.next_contact_date|date:"d M Y" }}<br/>{% endif %}
+{% if record.frequency %}
+  <b>Desired Frequency of Contact:</b> {{ record.get_frequency_display }}<br/>{% endif %}
+<a href="{% url 'delete' record.pk %}" title="Delete contact!">🔥 Delete this contact permanently.</a><br/>
+</div>
+
+{% if notes_list %}<h2>Notes</h2>{% endif %}
+<div id="notes-container">
+{% for note in notes_list reversed %}
+  <p><b>{{ note.date }}</b><br/>
+  {{ note.note }}</p>
+{% endfor %}
+</div>
+{% endblock %}
