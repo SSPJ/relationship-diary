@@ -1,5 +1,5 @@
 # Relationship Diary, Seamus Johnston, 2018, GPLv3
-from random import choices as randomchoices
+from random import choice as randomchoices
 from datetime import date, timedelta
 from dateutil import parser
 import re
