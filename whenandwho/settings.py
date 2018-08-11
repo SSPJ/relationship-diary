@@ -21,16 +21,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=3f(ijki3s#xd4%4h&4e%5fij2bwl1$zv09d7lyt6*1hdy)(au'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['diary.seamusjohnston.com']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-STATIC_ROOT = os.path.dirname(BASE_DIR) + 'whenandwho/public/'
+STATIC_ROOT = os.path.dirname(BASE_DIR) + '/relationshipdiary/public/static/'
 STATIC_URL = '/static/'
 
 
@@ -87,7 +87,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'WARNING'),
         },
     },
 }
@@ -98,7 +98,7 @@ LOGGING = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'dev.sqlite3'),
     }
 }
 
@@ -134,4 +134,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-

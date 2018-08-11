@@ -12,6 +12,9 @@
 <div id="page">
 
   <header>
+  <div style="background: #ffffba; border: 1px solid black;">
+This demo is PUBLIC. Please don't upload real contacts! The database is restored from backup frequently to prevent vandalism; your changes will disappear soon.
+  </div>
   {% block header %}
     {% if http_referer_category %}
     <a href="{% url 'index' http_referer_category %}">Return to Contacts List</a>
