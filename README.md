@@ -8,6 +8,8 @@ The people we meet are more than telephone numbers or job titles. This software 
 * it is self-hosted and free to use
 * it is 100% private -- nobody sees your contacts but you
 
+[There is a live demo here.](http://diary.seamusjohnston.com/)
+
 ![ScreenShot](Screenshot2.png)
 
 I was motivated to build this by the lack of any FREE relationship management software that DOESN'T share your data with advertisers.
